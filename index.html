@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Bite - Premium Catering Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        :root {
+            --primary: #810610;
+            --secondary: #457b9d;
+            --light: #f2f6f0;
+            --dark: #04070c;
+            --accent: #a8dadc;
+            --warm: #fca311;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #eeecec;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .header-shrink {
+            padding: 5px 0;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--dark);
+        }
+        
+        .logo i {
+            margin-right: 8px;
+            color: var(--warm);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 1rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--dark);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/800') center/cover no-repeat;
+             background: url(ammu.jpg) no-repeat center center / cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 1rem;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+           
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background-color: #c4303e;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(230, 57, 70, 0.3);
+        }
+        
+        /* Menu Section */
+        section {
+            padding: 5rem 8%;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .menu-tab {
+            padding: 0.8rem 1.5rem;
+            margin: 0.5rem;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-tab.active,
+        .menu-tab:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .menu-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .menu-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .menu-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .menu-item:hover .menu-img img {
+            transform: scale(1.1);
+        }
+        
+        .menu-info {
+            padding: 1.5rem;
+        }
+        
+        .menu-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .menu-info p {
+            color: #666; 
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .menu-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .add-to-cart {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #c4303e;
+        }
+        
+        /* New Arrivals */
+        .new-arrivals {
+            background-color: #f5f5f5;
+        }
+        
+        .arrivals-slider {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .arrivals-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .arrival-item {
+            min-width: 300px;
+            background-color: white;
+            margin-right: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .arrival-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .arrival-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .arrival-info {
+            padding: 1.5rem;
+        }
+        
+        .arrival-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .arrival-info p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .arrival-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .slider-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .slider-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        /* About Section */
+        .about {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-img {
+            position: relative;
+        }
+        
+        .about-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .about-content h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #444;
+        }
+        
+        /* Contact */
+        .contact {
+            background-color: #f5f5f5;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .info-item {
+            display: flex;
+            margin-bottom: 1.5rem;
+        }
+        
+        .info-item i {
+            min-width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+        }
+        
+        .info-details h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-details p {
+            color: #666;
+            
+        }
+        
+        .contact-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        .form-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .form-btn:hover {
+            background-color: #c4303e;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 8% 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .footer-col p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Cart Modal */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            transition: right 0.5s ease;
+            overflow-y: auto;
+        }
+        
+        .cart-modal.open {
+            right: 0;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-header h2 {
+            font-size: 1.5rem;
+        }
+        
+        .close-cart {
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-cart:hover {
+            color: var(--primary);
+        }
+        
+        .cart-items {
+            padding: 1.5rem;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+        
+        .cart-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background-color: #f5f5f5;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .quantity-btn:hover {
+            background-color: #ddd;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            height: 30px;
+            border: 1px solid #ddd;
+            text-align: center;
+            margin: 0 0.5rem;
+        }
+        
+        .remove-item {
+            color: #999;
+            cursor: pointer;
+            margin-left: auto;
+            transition: color 0.3s ease;
+        }
+        
+        .remove-item:hover {
+            color: var(--primary);
+        }
+        
+        .cart-total {
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .total-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .total-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .cart-buttons {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .checkout-btn {
+            padding: 0.8rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #c4303e;
+        }
+        
+        .continue-shopping {
+            padding: 0.8rem;
+            background-color: #f5f5f5;
+            color: var(--dark);
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .continue-shopping:hover {
+            background-color: #ddd;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 99;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .scroll-top.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .scroll-top:hover {
+            background-color: #c4303e;
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive Styles */
+        @media screen and (max-width: 992px) {
+            section {
+                padding: 4rem 5%;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transform: translateY(-150%);
+                transition: transform 0.5s ease;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .cart-modal {
+                width: 100%;
+                right: -100%;
+            }
+        }
+        
+        @media screen and (max-width: 576px) {
+            section {
+                padding: 3rem 5%;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .about-content h2,
+            .contact-info h3 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo"><i class="fas fa-utensils"></i>Food<span>Bite</span></a>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#new-arrivals">New Arrivals</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <div class="cart-count">0</div>
+            </div>
+            <div class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+     
+    <section class="hero">
+       
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+            <h1>Delight Your Taste Buds</h1>
+            <p>Experience premium catering services with our exquisite menu curated by top chefs. We make every occasion special with our delicious food.</p>
+            <a href="#menu" class="btn">Explore Menu</a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Our Menu</h2>
+        </div>
+        <div class="menu-tabs" data-aos="fade-up" data-aos-delay="200">
+            <div class="menu-tab active" data-category="all">All</div>
+            <div class="menu-tab" data-category="appetizers">Appetizers</div>
+            <div class="menu-tab" data-category="mains">Main Course</div>
+            <div class="menu-tab" data-category="desserts">Desserts</div>
+            <div class="menu-tab" data-category="drinks">Drinks</div>
+        </div>
+        <div class="menu-items" data-aos="fade-up" data-aos-delay="400">
+
+
+
+            <!-- Appetizers -->
+            <div class="menu-item" data-category="appetizers">
+                <div class="menu-img">
+                    <img src="bruschetta1.jpg" alt="Bruschetta">
+                </div>
+                <div class="menu-info">
+                    <h3>Classic Bruschetta</h3>
+                    <p>Toasted baguette topped with fresh tomatoes, basil, and garlic.</p>
+                    <div class="menu-price">$8.99</div>
+                    <button class="add-to-cart" data-id="1" data-name="Classic Bruschetta" data-price="8.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                </div>
+            </div>
+            <div class="menu-item" data-category="appetizers">
+                <div class="menu-img">
+                    <img src="Spinach2.jpg" alt="Spinach Artichoke Dip">
+                </div>
+                <div class="menu-info">
+                    <h3>Spinach Artichoke Dip</h3>
+                    <p>Creamy spinach and artichoke dip served with tortilla chips.</p>
+                    <div class="menu-price">$10.99</div>
+                    <button class="add-to-cart" data-id="2" data-name="Spinach Artichoke Dip" data-price="10.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                </div>
+            </div>
+ <div class="menu-item" data-category="appetizers">
+                <div class="menu-img">
+                    <img src="nuggets19.jpg" alt="chicken nuggets">
+                </div>
+                <div class="menu-info">
+                    <h3>chicken nuggets</h3>
+                    <p>Made from battered chicken meat</p>
+                    <div class="menu-price">$4.99</div>
+                    <button class="add-to-cart" data-id="2" data-name="chicken nuggets" data-price="10.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                </div>
+            </div>
+             <div class="menu-item" data-category="appetizers">
+                <div class="menu-img">
+                    <img src="french20.jpg" alt="French Fries">
+                </div>
+                <div class="menu-info">
+                    <h3>French Fries</h3>
+                    <p>Snack typically made from deep-fried potatoes</p>
+                    <div class="menu-price">$3.99</div>
+                    <button class="add-to-cart" data-id="2" data-name="French Fries" data-price="10.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Main Course -->
+            <div class="menu-item" data-category="mains">
+                <div class="menu-img">
+                    <img src="Grilled Salmon 3.jpg" alt="Grilled Salmon">
+                </div>
+                <div class="menu-info">
+                    <h3>Grilled Salmon</h3>
+                    <p>Fresh salmon grilled to perfection with lemon herb butter sauce.</p>
+                    <div class="menu-price">$18.99</div>
+                    <button class="add-to-cart" data-id="3" data-name="Grilled Salmon" data-price="18.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                </div>
+            </div>
+            <div class="menu-item" data-category="mains">
+                <div class="menu-img">
+                    <img src="Beef3.jpg" alt="Beef Tenderloin">
+                </div>
+                <div class="menu-info">
+                    <h3>Beef Tenderloin Steak</h3>
+                    <p>Premium beef tenderloin steak with red wine reduction.</p>
+                    <div class="menu-price">$22.99</div>
+                    <button class="add-to-cart" data-id="4" data-name="Beef Tenderloin Steak" data-price="22.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                </div>
+            </div>
+<div class="menu-item" data-category="mains">
+                <div class="menu-img">
+                    <img src="chicken17.jpg" alt="Chicken Briyani">
+                </div>
+                <div class="menu-info">
+                    <h3>Chicken Briyani</h3>
+                    <p>meat dish cherished in the Indian sub-continent</p>
+                    <div class="menu-price">$22.99</div>
+                    <button class="add-to-cart" data-id="4" data-name="Chicken Briyani" data-price="22.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                </div>
+            </div>
+            <div class="menu-item" data-category="mains">
+                <div class="menu-img">
+                    <img src="panner18.jpg" alt="Paneer Briyani">
+                </div>
+                <div class="menu-info">
+                    <h3>Paneer Briyani</h3>
+                    <p>Premium beef tenderloin steak with red wine reduction.</p>
+                    <div class="menu-price">$22.99</div>
+                    <button class="add-to-cart" data-id="4" data-name="Paneer Briyani" data-price="22.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+            <!-- Desserts -->
+            <div class="menu-item" data-category="desserts">
+                <div class="menu-img">
+                    <img src="chocalate 4.jpg" alt="Chocolate Lava Cake">
+                </div>
+                <div class="menu-info">
+                    <h3>Chocolate Lava Cake</h3>
+                    <p>Warm chocolate cake with molten center and vanilla ice cream.</p>
+                    <div class="menu-price">$9.99</div>
+                    <button class="add-to-cart" data-id="5" data-name="Chocolate Lava Cake" data-price="9.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                </div>
+            </div>
+            <div class="menu-item" data-category="desserts">
+                <div class="menu-img">
+                    <img src="Classic Tiramisu5.jpg" alt="Tiramisu">
+                </div>
+                <div class="menu-info">
+                    <h3>Classic Tiramisu</h3>
+                    <p>Italian coffee-flavored dessert with layers of mascarpone cheese.</p>
+                    <div class="menu-price">$8.99</div>
+                    <button class="add-to-cart" data-id="6" data-name="Classic Tiramisu" data-price="8.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                </div>
+            </div>
+<div class="menu-item" data-category="desserts">
+                <div class="menu-img">
+                    <img src="lusciousDelight.avif" alt="Luscious Apricot Delight">
+                </div>
+                <div class="menu-info">
+                    <h3>Apricot delight</h3>
+                    <p>Apricot delight dessert with sponge cake.</p>
+                    <div class="menu-price">$7.99</div>
+                    <button class="add-to-cart" data-id="6" data-name="Apricot delight" data-price="7.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                </div>
+            </div>
+            <div class="menu-item" data-category="desserts">
+                <div class="menu-img">
+                    <img src="Decandent16.jpg" alt="Decadent Chocolate Delight">
+                </div>
+                <div class="menu-info">
+                    <h3>Decadent Chocolate Delight</h3>
+                    <p>A multi-layered dessert made with a combination of rich chocolate</p>
+                    <div class="menu-price">$11.99</div>
+                    <button class="add-to-cart" data-id="6" data-name="Decadent Chocolate Delight" data-price="8.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                </div>
+            </div>
+
+
+
+            <!-- Drinks -->
+            <div class="menu-item" data-category="drinks">
+                <div class="menu-img">
+                    <img src="Fresh Fruit Smoothie6.jpg" alt="Fresh Fruit Smoothie">
+                </div>
+                <div class="menu-info">
+                    <h3>Fresh Fruit Smoothie</h3>
+                    <p>Blend of seasonal fruits with yogurt and honey.</p>
+                    <div class="menu-price">$6.99</div>
+                    <button class="add-to-cart" data-id="7" data-name="Fresh Fruit Smoothie" data-price="6.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                </div>
+            </div>
+            <div class="menu-item" data-category="drinks">
+                <div class="menu-img">
+                    <img src="latte15.jpg" alt="Iced Caramel Latte">
+                </div>
+                <div class="menu-info">
+                    <h3>Iced Caramel Latte</h3>
+                    <p>Espresso with milk, caramel syrup, and ice.</p>
+                    <div class="menu-price">$5.99</div>
+                    <button class="add-to-cart" data-id="8" data-name="Iced Caramel Latte" data-price="5.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="drinks">
+                <div class="menu-img">
+                    <img src="verjin 13.webp" alt="Virgin Mojito">
+                </div>
+                <div class="menu-info">
+                    <h3>Virigin Mojito</h3>
+                    <p> The Cojito adds coconut flavor</p>
+                    <div class="menu-price">$5.99</div>
+                    <button class="add-to-cart" data-id="8" data-name="Iced Caramel Latte" data-price="5.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="drinks">
+                <div class="menu-img">
+                    <img src="strawberry14.jpg" alt="Strawberry Mojito">
+                </div>
+                <div class="menu-info">
+                    <h3>Strawberry Mojito</h3>
+                    <p>The classic refreshing cocktail is changed up with fresh strawberries, key lime juice and citrus</p>
+                    <div class="menu-price">$6.99</div>
+                    <button class="add-to-cart" data-id="8" data-name="Strawberry Mojito" data-price="5.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                </div>
+            </div> 
+        </div>
+    </section>
+
+
+
+    <!-- New Arrivals Section -->
+    <section id="new-arrivals" class="new-arrivals">
+        <div class="section-title" data-aos="fade-up">
+            <h2>New Arrivals</h2>
+        </div>
+        <div class="arrivals-slider" data-aos="fade-up" data-aos-delay="200">
+            <div class="arrivals-track">
+                <div class="arrival-item">
+                    <div class="arrival-img">
+                        <img src="Truffle 8.jpg" alt="Truffle Risotto">
+                    </div>
+                    <div class="arrival-info">
+                        <h3>Truffle Risotto</h3>
+                        <p>Creamy risotto with shaved black truffles and parmesan.</p>
+                        <div class="arrival-price">$19.99</div>
+                        <button class="add-to-cart" data-id="9" data-name="Truffle Risotto" data-price="19.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="arrival-item">
+                    <div class="arrival-img">
+                        <img src="mango9.jpg" alt="Mango Tart">
+                    </div>
+                    <div class="arrival-info">
+                        <h3>Fresh Mango Tart</h3>
+                        <p>Buttery tart shell filled with pastry cream and fresh mangoes.</p>
+                        <div class="arrival-price">$12.99</div>
+                        <button class="add-to-cart" data-id="10" data-name="Fresh Mango Tart" data-price="12.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="arrival-item">
+                    <div class="arrival-img">
+                        <img src="Lobster11.jpg" alt="Lobster Ravioli">
+                    </div>
+                    <div class="arrival-info">
+                        <h3>Lobster Ravioli</h3>
+                        <p>Handmade ravioli filled with lobster in a creamy saffron sauce.</p>
+                        <div class="arrival-price">$24.99</div>
+                        <button class="add-to-cart" data-id="11" data-name="Lobster Ravioli" data-price="24.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="arrival-item">
+                    <div class="arrival-img">
+                        <img src="Iced12.jpg" alt="Matcha Latte">
+                    </div>
+                    <div class="arrival-info">
+                        <h3>Iced Matcha Latte</h3>
+                        <p>Premium matcha green tea with milk and ice.</p>
+                        <div class="arrival-price">$6.99</div>
+                        <button class="add-to-cart" data-id="12" data-name="Iced Matcha Latte" data-price="6.99" data-img="/api/placeholder/400/320">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <div class="slider-btn prev-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="slider-btn next-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about" data-aos="fade-up">
+            <div class="about-img">
+                <img src="food bite.png" alt="About Us">
+            </div>
+            <div class="about-content">
+                <h2>About Food Bite</h2>
+                <p>Food Bite has been delivering exceptional catering services for over a decade. We take pride in using fresh, locally sourced ingredients to create memorable culinary experiences.</p>
+                <p>Our team of passionate chefs brings creativity and expertise to every dish, ensuring that your event, whether small or large, is complemented by delicious food that leaves a lasting impression.</p>
+                <a href="#contact" class="btn">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Contact Us</h2>
+        </div>
+        <div class="contact-container" data-aos="fade-up" data-aos-delay="200">
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="info-details">
+                        <h4>Location</h4>
+                        <p>Hyderabad, FoodBite</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <div class="info-details">
+                        <h4>Phone</h4>
+                        <p>+91 1234567890</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div class="info-details">
+                        <h4>Email</h4>
+                        <p>info@foodbite.com</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <div class="info-details">
+                        <h4>Hours</h4>
+                        <p>Monday - Saturday: 9:00 AM - 6:00 PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" placeholder="Enter subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" placeholder="Enter your message"></textarea>
+                    </div>
+                    <button type="submit" class="form-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Food Bite</h3>
+                <p>Premium catering services for all your events and occasions. We bring delicious food and exceptional service to make your gathering memorable.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#new-arrivals">New Arrivals</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Corporate Events</a></li>
+                    <li><a href="#">Weddings</a></li>
+                    <li><a href="#">Birthday Parties</a></li>
+                    <li><a href="#">Private Dinners</a></li>
+                    <li><a href="#">Special Occasions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter to get updates on new menu items and special offers.</p>
+                <form class="footer-form">
+                    <input type="email" placeholder="Enter your email" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #444; background: rgba(255,255,255,0.1); color: white; border-radius: 4px;">
+                    <button type="submit" style="width: 100%; padding: 10px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Food Bite. All Rights Reserved. Designed with <i class="fas fa-heart" style="color: var(--primary);"></i></p>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <div class="close-cart">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-total">
+            <div class="total-text">Total:</div>
+            <div class="total-price">$0.00</div>
+        </div>
+        <div class="cart-buttons">
+            <button class="checkout-btn">Proceed to Checkout</button>
+            <button class="continue-shopping">Continue Shopping</button>
+        </div>
+    </div>
+    
+    <div class="overlay"></div>
+    
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <!-- AOS Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <!-- Main JavaScript -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease',
+            once: true,
+            offset: 100
+        });
+        
+        // DOM Elements
+        const header = document.querySelector('header');
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const cartIcon = document.querySelector('.cart-icon');
+        const cartModal = document.querySelector('.cart-modal');
+        const overlay = document.querySelector('.overlay');
+        const closeCart = document.querySelector('.close-cart');
+        const continueShoppingBtn = document.querySelector('.continue-shopping');
+        const menuTabs = document.querySelectorAll('.menu-tab');
+        const menuItems = document.querySelectorAll('.menu-item');
+        const addToCartBtns = document.querySelectorAll('.add-to-cart');
+        const cartItemsContainer = document.querySelector('.cart-items');
+        const cartCount = document.querySelector('.cart-count');
+        const totalPrice = document.querySelector('.total-price');
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        const sliderTrack = document.querySelector('.arrivals-track');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const arrivalItems = document.querySelectorAll('.arrival-item');
+        
+        // Cart Array
+        let cart = [];
+        
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if cart exists in localStorage
+            const savedCart = localStorage.getItem('foodBiteCart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartUI();
+            }
+            
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('header-shrink');
+                    scrollTopBtn.classList.add('active');
+                } else {
+                    header.classList.remove('header-shrink');
+                    scrollTopBtn.classList.remove('active');
+                }
+            });
+            
+            // Mobile Menu Toggle
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+            
+            // Cart Toggle
+            cartIcon.addEventListener('click', toggleCart);
+            closeCart.addEventListener('click', toggleCart);
+            overlay.addEventListener('click', toggleCart);
+            continueShoppingBtn.addEventListener('click', toggleCart);
+            
+            // Menu Tabs
+            menuTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs
+                    menuTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Filter menu items
+                    const category = tab.getAttribute('data-category');
+                    
+                    menuItems.forEach(item => {
+                        if (category === 'all' || item.getAttribute('data-category') === category) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Add to Cart
+            addToCartBtns.forEach(btn => {
+                btn.addEventListener('click', addToCart);
+            });
+            
+            // Scroll to Top
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // New Arrivals Slider
+            let sliderPosition = 0;
+            const itemWidth = arrivalItems[0].offsetWidth + 20; // width + margin
+            
+            prevBtn.addEventListener('click', () => {
+                if (sliderPosition > 0) {
+                    sliderPosition--;
+                    updateSliderPosition();
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                const maxPosition = arrivalItems.length - getVisibleItems();
+                if (sliderPosition < maxPosition) {
+                    sliderPosition++;
+                    updateSliderPosition();
+                }
+            });
+            
+            // Update slider on window resize
+            window.addEventListener('resize', () => {
+                updateSliderPosition();
+            });
+            
+            // Initialize slider position
+            updateSliderPosition();
+        });
+        
+        // Functions
+        function toggleCart() {
+            cartModal.classList.toggle('open');
+            overlay.classList.toggle('open');
+            document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
+        }
+        
+        function addToCart(e) {
+            const btn = e.target;
+            const id = btn.getAttribute('data-id');
+            const name = btn.getAttribute('data-name');
+            const price = parseFloat(btn.getAttribute('data-price'));
+            const img = btn.getAttribute('data-img');
+            
+            // Check if item is already in cart
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({
+                    id,
+                    name,
+                    price,
+                    img,
+                    quantity: 1
+                });
+            }
+            
+            // Save cart to localStorage
+            localStorage.setItem('foodBiteCart', JSON.stringify(cart));
+            
+            // Show animation
+            showAddedAnimation(btn);
+            
+            // Update cart UI
+            updateCartUI();
+        }
+        
+        function showAddedAnimation(btn) {
+            btn.textContent = 'Added!';
+            btn.style.backgroundColor = '#28a745';
+            
+            setTimeout(() => {
+                btn.textContent = 'Add to Cart';
+                btn.style.backgroundColor = '';
+            }, 1500);
+        }
+        
+        function updateCartUI() {
+            // Update cart count
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update cart items
+            cartItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="text-align: center; padding: 20px;">Your cart is empty</p>';
+            } else {
+                cart.forEach(item => {
+                    const cartItemHTML = `
+                        <div class="cart-item" data-id="${item.id}">
+                            <div class="cart-item-img">
+                                <img src="${item.img}" alt="${item.name}">
+                            </div>
+                            <div class="cart-item-details">
+                                <div class="cart-item-name">${item.name}</div>
+                                <div class="cart-item-price">${item.price.toFixed(2)}</div>
+                                <div class="cart-item-quantity">
+                                    <button class="quantity-btn decrease">-</button>
+                                    <input type="number" class="quantity-input" value="${item.quantity}" min="1" readonly>
+                                    <button class="quantity-btn increase">+</button>
+                                </div>
+                            </div>
+                            <div class="remove-item">
+                                <i class="fas fa-trash"></i>
+                            </div>
+                        </div>
+                    `;
+                    
+                    cartItemsContainer.innerHTML += cartItemHTML;
+                });
+                
+                // Add event listeners to cart items
+                document.querySelectorAll('.increase').forEach(btn => {
+                    btn.addEventListener('click', increaseQuantity);
+                });
+                
+                document.querySelectorAll('.decrease').forEach(btn => {
+                    btn.addEventListener('click', decreaseQuantity);
+                });
+                
+                document.querySelectorAll('.remove-item').forEach(btn => {
+                    btn.addEventListener('click', removeItem);
+                });
+            }
+            
+            // Update total price
+            const total = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            totalPrice.textContent = `${total.toFixed(2)}`;
+        }
+        
+        function increaseQuantity(e) {
+            const id = e.target.closest('.cart-item').getAttribute('data-id');
+            const item = cart.find(item => item.id === id);
+            
+            if (item) {
+                item.quantity++;
+                updateCartUI();
+                localStorage.setItem('foodBiteCart', JSON.stringify(cart));
+            }
+        }
+        
+        function decreaseQuantity(e) {
+            const id = e.target.closest('.cart-item').getAttribute('data-id');
+            const item = cart.find(item => item.id === id);
+            
+            if (item && item.quantity > 1) {
+                item.quantity--;
+                updateCartUI();
+                localStorage.setItem('foodBiteCart', JSON.stringify(cart));
+            }
+        }
+        
+        function removeItem(e) {
+            const id = e.target.closest('.cart-item').getAttribute('data-id');
+            cart = cart.filter(item => item.id !== id);
+            
+            updateCartUI();
+            localStorage.setItem('foodBiteCart', JSON.stringify(cart));
+        }
+        
+        function getVisibleItems() {
+            const containerWidth = document.querySelector('.arrivals-slider').offsetWidth;
+            const itemWidth = arrivalItems[0].offsetWidth + 20; // width + margin
+            return Math.floor(containerWidth / itemWidth);
+        }
+        
+        function updateSliderPosition() {
+            const itemWidth = arrivalItems[0].offsetWidth + 20; // width + margin
+            sliderTrack.style.transform = `translateX(-${sliderPosition * itemWidth}px)`;
+            
+            // Enable/disable buttons based on position
+            if (sliderPosition === 0) {
+                prevBtn.style.opacity = '0.5';
+                prevBtn.style.cursor = 'not-allowed';
+            } else {
+                prevBtn.style.opacity = '1';
+                prevBtn.style.cursor = 'pointer';
+            }
+            
+            const maxPosition = arrivalItems.length - getVisibleItems();
+            if (sliderPosition >= maxPosition) {
+                nextBtn.style.opacity = '0.5';
+                nextBtn.style.cursor = 'not-allowed';
+            } else {
+                nextBtn.style.opacity = '1';
+                nextBtn.style.cursor = 'pointer';
+            }
+        }
+    </script>
+</body>
+</html>
